@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block title %}
+  signup
+    {% endblock %}
+    {% block content %}
+    <h1> Signup</h1>
+
+    <form method = "POST">
+      {% csrf_token %}
+      {{form.as_p}}
+
+      <br>
+
+      <input type = "submit" value = "Registrar">
+      <input type = "reset" value= "Cancelar">
+    </form>
+
+    <p><a href="/">Volver</a></p>
+    
+    {% endblock %}
