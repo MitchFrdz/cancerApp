@@ -13,6 +13,19 @@ def index (request):
 def login (request):
     return render(request, 'login.html')
 
+
+def nosotros (request):
+    return render(request, 'nosotros.html')
+
+def contacto (request):
+    return render(request, 'contacto.html')
+
+def noticias (request):
+    return render(request, 'noticias.html')
+
+def inicio (request):
+    return render(request, 'inicio.html')
+
 class Signup(FormView):
     template_name = 'signup.html'
     form_class = Usuario_Form

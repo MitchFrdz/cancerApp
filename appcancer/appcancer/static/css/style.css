@@ -61,7 +61,7 @@ ul.social-network li {
 	margin: 0 5px;	
 }
 ul.social-network li a {	
-	color:#d0d0d0;
+	color:#ff99bb;
 	
 }
 .social-network li:hover .fa-twitter {
@@ -93,22 +93,22 @@ ul.social-network li a {
 }
 
 .info i {
-  color: #d0d0d0;
+  color: #ff99bb;
   font-size: 15px;
   margin-right: 10px;
 }
 
 .info a {
-  color: #d0d0d0;
+  color: #ff99bb;
   font-size: 12px; 
 }
 
 .info a:hover {
-  color: #ED502E;
+  color: #ff6699;
 }
 
 .info p {
-  color: #d0d0d0;
+  color: #ff99bb;
   font-size: 12px;
   margin: 0;
 }
@@ -130,7 +130,7 @@ ul.social-network li a {
 	
 }
 .navbar-brand h1 span {
-	color: #ED502E;
+	color: #ff6699;
 }
 
 .menu {
@@ -163,8 +163,8 @@ ul.social-network li a {
 }
 
 .nav-tabs > li > a:hover {	
-  border-color: #ED502E #eee #eee;
-  color: #ED502E;
+  border-color: #ff6699 #eee #eee;
+  color: #ff6699;
   border-radius:0;
   background-color:#f9f9f9; 
   transition: all 0.3s ease-in-out;
@@ -173,8 +173,8 @@ ul.social-network li a {
   -o-transition: all 0.3s ease-in-out;
 }
 .nav-tabs > li > a.active {
-	border-color: #ED502E #eee #eee;
-  color: #ED502E;
+	border-color: #ff6699 #eee #eee;
+  color: #ff6699;
   border-radius:0;
   background-color:#f9f9f9; 
   transition: all 0.3s ease-in-out;
@@ -217,11 +217,11 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 .icon {
 	margin-top:30px;
 	margin-bottom:30px;
-	color:#ED502E;
+	color:#ff6699;
 }
 
 .ficon i {
-	color:#ED502E;
+	color:#ff6699;
 }
 .ficon a {
 	color:#333;
@@ -255,7 +255,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 .btn:hover {
   color: #fff;
   text-decoration: none;
-  background-color: #ED502E;
+  background-color: #ff6699;
   transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -324,7 +324,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 	margin-top:30px;
 }
 .jumbotron span{
-	color:#ED502E;
+	color:#ff6699;
 }
 .jumbotron .btn-primary {
   color: #fff;
@@ -332,7 +332,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
   font-size:16px;
   text-transform:uppercase;
   margin-top:20px;
-  background-color:#ED502E;
+  background-color:#ff6699;
 }
 .jumbotron .btn-primary:hover {
   color:#333;
@@ -342,7 +342,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 .jumbotron h2 {
 	margin-top:-68px;
 	margin-bottom:-60px;
-   color:#ED502E;
+   color:#ff6699;
    background-color:#e9e9e9;
    padding: 50px;
    padding-bottom:70px;
@@ -369,7 +369,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 .icons i {
 	padding:50px;
 	border-radius:50%;
-	color:#ED502E;
+	color:#ff6699;
 	background-color:#fff;
 	border-color:#ccc;
 	margin-top:30px;
@@ -380,7 +380,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 	transition: background 0.2s, color 0.2s;
 }
 .icons i:hover {
-	background-color:#ED502E;
+	background-color:#ff6699;
 	color: #fff;
 }
 
@@ -406,7 +406,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 	
 }
 .blog .ficon a:hover {
-	color:#ED502E;
+	color:#ff6699;
 }
 .recents {
 	margin-top:110px;
@@ -431,12 +431,12 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
 .recent-post ul.recent li a:hover {
 	text-decoration:none;
 	color:#fff;
-	background-color:#ED502E;
+	background-color:#ff6699;
 }
 .pager li > a:hover,
 .pager li > a:focus {
   text-decoration: none;
-  background-color: #ED502E;
+  background-color: #ff6699;
 }
 .list-group-item {
   position: relative;
@@ -447,7 +447,7 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
   color:#333;
 }
 .list-group-item a:hover {
-  color:#ED502E;
+  color:#ff6699;
   margin-left:5px;
 }
 .list-group-item > .badge {
@@ -473,7 +473,7 @@ nav#filter a {
 	color:#333;
 }
 nav#filter a:hover, nav#filter a.current {
-	background-color: #ED502E;
+	background-color: #ff6699;
 	color:#fff;
 }
 
@@ -543,7 +543,7 @@ nav#filter a {
 }
 
 .portfolio-item .portfolio-desc a {
-	color: #ED502E;
+	color: #ff6699;
 }
 .portfolio-item .portfolio-desc a:hover {
 	/*text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);*/
@@ -585,7 +585,7 @@ button.btn-default {
 	color:#333;
 }
 button.btn-default:hover {
-	background-color:#ED502E;
+	background-color:#ff6699;
 	color:#fff;
 }
 textarea.form-control {
@@ -667,7 +667,7 @@ footer {
 	
 }
 .f-about a h1 span {
-	color: #ED502E;
+	color: #ff6699;
 	
 }
 .f-about p {
@@ -729,7 +729,7 @@ footer {
 }
 .copyright a:hover {
     text-decoration: underline;
-    color: #ED502E;
+    color: #ff6699;
 }
 
 .foot-nav {
@@ -760,7 +760,7 @@ footer {
 }
 
 .foot-nav a:hover {
-    color: #ED502E;
+    color: #ff6699;
 }
 
 a.scrollup{
@@ -780,7 +780,7 @@ a.scrollup{
 }
 a.scrollup:hover{
 	opacity:1;
-	background-color:#ED502E;
+	background-color:#ff6699;
 	color:#fff;;	
 }
 
