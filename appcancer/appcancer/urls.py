@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from home.views import index, login, Signup
-from home.views import inicio
+from home.views import index, login, Signup, inicio, directorio
 from django.conf import settings
 from django.contrib.auth.views import login, logout_then_login
 
@@ -25,7 +24,7 @@ urlpatterns = [
     url(r'^$', inicio, name='inicio'),
     url(r'^index/$', index, name='index'),
     url(r'^accounts/', include('allauth.urls')),
-
+    url(r'^directorio/', directorio, name='directorio'),
     #url(r'^login/', login, name='login'),
     url(r'^login/$', login, {'template_name':'login.html'}, name= "login"),
     url(r'^logout/$', logout_then_login, name="logout"),

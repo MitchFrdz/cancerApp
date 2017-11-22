@@ -12,8 +12,8 @@ def index (request):
     return render(request, 'index.html')
 def login (request):
     return render(request, 'login.html')
-
-
+def directorio (request):
+    return render(request, 'directorio.html')
 def nosotros (request):
     return render(request, 'nosotros.html')
 
