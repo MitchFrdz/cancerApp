@@ -21,7 +21,7 @@ class Doctores(models.Model):
     edad=models.IntegerField()
     titulos=models.TextField()
     cedulatitulacion=models.CharField(max_length=100)
-
+    idFundacion_user=models.ForeignKey(Fundaciones)
     def __unicode__(self):
         return self.name.Doctor_user
 
