@@ -34,6 +34,7 @@
 
     <form method = "POST">
     {% csrf_token %}
+   
       <div class = "form_group">
         <label for = "UserName: ">Nombre Usuario</label>
         <input type = "text" class = "form-control" id="username" name = "username" placeholder="Usuario">
@@ -46,6 +47,7 @@
 
       <button type = "submit" class = "btn btn-primary btn-lg btn-block">Iniciar sesión</button>
       <button type = "reset" class = "btn btn-warning btn-lg block">Cancelar</button>
+       
     </form>
     {% endif %}
 

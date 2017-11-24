@@ -33,3 +33,29 @@ class Hospital(models.Model):
     Direccion = models.CharField(max_length=100)
     def __unicode__(self):
         return self.name.Nombre
+
+
+class Noticia(models.Model):
+    autor = models.CharField(max_length=100)
+    titulo = models.IntegerField()
+    cotenido=models.IntegerField()
+    imagen = models.CharField(max_length=100)
+    fechapublicacion=models.DateField(blank=True,null=True)
+
+    def __unicode__(self):
+        return self.name.titulo
+
+
+class Fundaciones(models.Model):
+    nombre = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=150)
+    cuentabancaria=models.IntegerField()
+    numerotelefono = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name.nombre
+
+
+#no se si se deberia de agregar un modelo para cuando se hacen citas
+#y otro para hacer los mensajes entre paciente y medico
+
