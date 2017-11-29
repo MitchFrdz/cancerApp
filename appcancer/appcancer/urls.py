@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from home.views import index, signup, inicio, directorio
+from home.views import index, signup, inicio, directorio,nosotros,reportehospital,reportemedicos,reporteasociacion,directorios
 from django.conf import settings
 from django.contrib.auth.views import login, logout_then_login# auth_views
 from django.contrib.auth import views as auth_view
@@ -25,11 +25,17 @@ urlpatterns = [
     url(r'^$', inicio, name='inicio'),
     url(r'^index/$', index, name='index'),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^directorio/', directorio, name='directorio'),
+    #url(r'^directorio/', directorio, name='directorio'),
+     url(r'^nosotros/', nosotros, name='nosotros'),
     #url(r'^login/', login, name='login'),
     url(r'^login/$', auth_view.login, {'template_name':'perfil.html'}, name= "login"),
     url(r'^logout/$', logout_then_login, name="logout"),
     url(r'^signup/$', signup, name="signup"),
+    url(r'^directorio/',directorios.as_view(),name="directorio"),
+    url(r'^doctores/',reportemedicos.as_view(),name="reportedoctores"),
+    url(r'^fundacion/',reporteasociacion.as_view(),name="reportefundacion"),
+    url(r'^hospital/',reportehospital.as_view(),name="reporte_hospital"),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

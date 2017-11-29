@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dewi Multi-purpose theme</title>
+
+  <!-- Bootstrap -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/isotope.css" media="screen" />
+  <link rel="stylesheet" href="/static/css/animate.css">
+  <link rel="stylesheet" href="/static/js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+  <link href="/static/css/style.css" rel="stylesheet">
+  <!-- =======================================================
+    Theme Name: Dewi
+    Theme URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+   <header>
+    <nav div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <ul class="social-network">
+          {% if user.is_authenticated %}
+          <li><a>Bienvenido {{user.username}}</a></li>
+          <li><a href = "/logout/"><i class="glyphicon glyphicon-log-out" ></i> Log out</a></li>
+          {%else%}
+          <li><a href="/accounts/facebook/login/?process=login " data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+          <li><a href="/accounts/google/login/?process=login" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          <li><a href="/login"><i class="glyphicon glyphicon-log-in" ></i> Login</a></li>
+        </ul>
+        <ul class="info">
+          {% endif%}
+          <li><a href="#"><i class="fa fa-envelope"></i>Hola@Appcenter.com</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+              <a href="http://localhost:8000/"><h1><span>Web </span>Cancer Center</h1></a>
+            </div>
+          </div>
+
+          <div class="navbar-collapse collapse">
+            <div class="menu">
+              <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="/"class="active">Inicio</a></li>
+                <li role="presentation"><a href="/directorio">Directorio</a></li>
+                <li role="presentation"><a href="/" >Noticias</a></li>
+                <li role="presentation"><a href="/">Contacto</a></li>
+                <li role="presentation"><a href="/nosotros">Nosotros</a></li>
+                 <li role="presentation"><a href="/login">Acceder</a></li>
+                  <li role="presentation"><a href="/signup">Registrate</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="jumbotron">
+    <h2>Directorio</h2>
+  </div>
+
+  <!-- section works -->
+  <section id="section-works" class="section appear clearfix">
+    <div class="container">
+      <div class="row">
+        <nav id="filter" class="col-md-12 text-center">
+          <ul>
+            <li><a href="#" class="current btn-theme btn-small" data-filter="*">Todo</a></li>
+            <li><a href="/doctores" class="btn-theme btn-small" data-filter=".webdesign">Medicos</a></li>
+            <li><a href="/fundacion" class="btn-theme btn-small" data-filter=".photography">Asociaciones</a></li>
+            <li><a href="#" class="btn-theme btn-small" data-filter=".print">Hospitales</a></li>
+            <h3>Todos los hospitales</h3>
+            <h5>Aqui podras encontrar toda la informacion de los medicos, de los hospitales o los que pertencen y tambien de las fundaciones o asociaciones a las que estamos integrados.
+             </h5>
+            <h5>
+
+
+            </h5>
+            <h5>
+            La informacion necesario para mantenerte en contacto con los telefonos que te proporcionamos para tener la mejor experiencia.
+            </h5>
+
+
+<table class = "table table-bordered">
+
+      <thead>
+
+        <tr>
+          <td>Nombre</td>
+          <td>Telefono</td>
+          <td>codigo postal</td>
+          <td>direccion</td>
+         
+
+        </tr>
+
+      </thead>
+      
+      <tbody>
+
+        <tr>
+
+        {% for p in object_list %}
+
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.telefono }}</td>
+          <td>{{ p.codigopostal }}</td>
+          <td>{{ p.Direccion }}</td>
+
+         
+          
+        </tr>
+
+      {% endfor %}
+
+      </tbody>
+
+    </table>
+
+
+  <div class="jumbotron">
+     
+    <p>Voluptatem accusantium doloremque laudantium sprea totam rem aperiam</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Get it now</a></p>
+  </div>
+
+  <footer>
+    <div class="inner-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 f-about">
+            <a href="index.html"><h1><span>D</span>ewi</h1></a>
+            <p>We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind, the hidden and mysterious subconscious. Our subconscious mind contains such power.</p>
+
+          </div>
+          <div class="col-md-4 l-posts">
+            <h3 class="widgetheading">Latest Posts</h3>
+            <ul>
+              <li><a href="#">This is awesome post title</a></li>
+              <li><a href="#">Awesome features are awesome</a></li>
+              <li><a href="#">Create your own awesome website</a></li>
+              <li><a href="#">Wow, this is fourth post title</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 f-contact">
+            <h3 class="widgetheading">Stay in touch</h3>
+            <a href="#">
+              <p><i class="fa fa-envelope"></i> example@gmail.com</p>
+            </a>
+            <p><i class="fa fa-phone"></i> +345 578 59 45 416</p>
+            <p><i class="fa fa-home"></i> Dewi inc | PO Box 23456 Little Lonsdale St, New York <br> Victoria 8011 USA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="last-div">
+      <div class="container">
+        <div class="row">
+          <div class="copyright">
+            &copy; Dewi Theme. All Rights Reserved
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Dewi
+              -->
+              <a href="https://bootstrapmade.com/bootstrap-corporate-templates/">Bootstrap Corporate Templates</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+          <nav class="foot-nav">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <a href="" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+    </div>
+  </footer>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="/static/js/jquery-2.1.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/wow.min.js"></script>
+  <script src="/static/js/fancybox/jquery.fancybox.pack.js"></script>
+  <script src="/static/js/jquery.isotope.min.js"></script>
+  <script src="/static/js/jquery.bxslider.min.js"></script>
+  <script src="/static/js/functions.js"></script>
+  <script>
+    wow = new WOW({}).init();
+  </script>
+
+</body>
+
+</html>
