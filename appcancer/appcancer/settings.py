@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
+from unipath import Path
+PROJECT_DIR = Path(__file__).parent
+
+from decouple import config
+
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,10 +32,11 @@ SECRET_KEY = 'ubb$6+@rm^oe^0zvh&j!k=bl0raiv1l=7l2@j*p+satl9!g&&m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = reverse_lazy("login")
-LOGIN_REDIRECT_URL = reverse_lazy("index")
+LOGIN_REDIRECT_URL = reverse_lazy("login")
 LOGOUT_URL = reverse_lazy("logout")
 
 # Application definition
@@ -47,8 +54,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+
+    'appcancer',
+    'articles',
     'home',
-    'appcancer'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -133,6 +142,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+ALLOWED_SIGNUP_DOMAINS = ['*']
 
+MEDIA_ROOT = PROJECT_DIR.parent.child('media')
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = PROJECT_DIR.parent.child('staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'appcancer/static')]
+
+#FILE_UPLOAD_TEMP_DIR = '/tmp/'
+#FILE_UPLOAD_PERMISSIONS = 0644

@@ -1,19 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect
 from django.views.generic import FormView
-from .models import Usuario
-from .forms import Usuario_Form
+from .forms import SignUpForm
 
 # Create your views here.
 def index (request):
     return render(request, 'index.html')
-def login (request):
-    return render(request, 'login.html')
+
+#def perfil (request):
+#    return render(request, 'login.html')
+
 def directorio (request):
     return render(request, 'directorio.html')
+
 def nosotros (request):
     return render(request, 'nosotros.html')
 
@@ -26,18 +28,18 @@ def noticias (request):
 def inicio (request):
     return render(request, 'inicio.html')
 
-class Signup(FormView):
-    template_name = 'signup.html'
-    form_class = Usuario_Form
-    success_url = reverse_lazy('login')
-
-def form_valid(self, form):
-    user = form.save()
-    p = Usuario()
-    p.Nombre = user
-    p.Telefono = form.cleaned_data['Telefono']
-    p.Correo = form.cleaned_data['Correo']
-    p.Direccion = form.cleaned_data['Direccion']
-
-    p.save()
-    return super(Signup, self).form_valid(form)
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if not form.is_valid():
+            return render(request, 'signup.html', {'form': form})
+        else:
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            User.objects.create_user(username=username, password=password, email=email)
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('/')
+    else:
+        return render(request, 'signup.html', {'form': SignUpForm()})

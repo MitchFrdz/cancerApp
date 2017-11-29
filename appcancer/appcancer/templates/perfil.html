@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block title %}
+    Login
+    {% endblock %}
+    {% block content %}
+
+    {% if user.is_authenticated %}
+      <p><h1>Bienvenido {{user.username}}</h1></p>
+      <a href = "/logout/">Cerrar sesión</a>
+
+      {% for account in user.socialaccount_set.all %}
+
+        {% ifequal account.provider "facebook" %}
+
+          <p><h4>{{ account.extra_data.first_name }}</h4></p>
+          <p><h4>{{ account.extra_data.last_name }}</h4></p>
+
+        {% else %}
+          {% ifequal account.provider "google" %}
+
+          <p><h4>{{ account.extra_data.given_name }}</h4></p>
+          <p><h4>{{ account.extra_data.family_name }}</h4></p>
+
+          {% endifequal %}
+          {% endifequal %}
+
+        <br>
+        <p><h4>Cuenta de &emsp;&emsp;: <strong style="text-transform:capitalize;">{{user.socialaccount_set.all.0.provider}}</strong></h4>
+        <p><img src="{{user.socialaccount_set.all.0.get_avatar_url}}" width="300px" height="300px"></p>
+    {% endfor%}
+
+    {% else %}
+
+    <div class="login">
+      <h2>Inicio de sesion</h2>
+      <form method="post" action="{% url 'login' %}" role="form">
+        {% csrf_token %}
+        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+          <label for="username">Nombre de usuario: </label>
+          <input type="text" class="form-control" id="username" name="username">
+          {% for error in form.username.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+        <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+          <label for="password">Contraseña: </label>
+          <input type="password" class="form-control" id="password" name="password">
+          {% for error in form.password.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Iniciar sesion</button>
+          <a href="{% url 'signup' %}" class="btn btn-link">Registrarse</a>
+        </div>
+      </form>
+    </div>
+
+    <p><a href="/">Volver</a></p>
+    {% endif %}
+{% endblock %}

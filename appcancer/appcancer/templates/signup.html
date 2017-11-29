@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
     {% block title %}
-  signup
+  Sign up
     {% endblock %}
     {% block content %}
-    <h1> Signup</h1>
-
-    <form method = "POST">
-      {% csrf_token %}
-      {{form.as_p}}
-
-      <br>
-
-      <input type = "submit" value = "Registrar">
-      <input type = "reset" value= "Cancelar">
-    </form>
-
+    <div class="signup">
+      <h2>Registrar</h2>
+      <form action="{% url 'signup' %}" method="post" role="form">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+          <div class="form-group{% if field.errors %} has-error{% endif %}">
+            <label for="{{ field.label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+              <span class="help-block">{{ field.help_text|safe }}</span>
+            {% endif %}
+            {% for error in field.errors %}
+              <label class="control-label">{{ error }}</label>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-lg">Crear cuenta</button>
+      </form>
+    </div>
     <p><a href="/">Volver</a></p>
-    
+
     {% endblock %}

@@ -14,11 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
-from home.views import index, login, Signup, inicio, directorio
+from home.views import index, signup, inicio, directorio
 from django.conf import settings
-from django.contrib.auth.views import login, logout_then_login
-
+from django.contrib.auth.views import login, logout_then_login# auth_views
+from django.contrib.auth import views as auth_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', inicio, name='inicio'),
@@ -26,7 +27,9 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^directorio/', directorio, name='directorio'),
     #url(r'^login/', login, name='login'),
-    url(r'^login/$', login, {'template_name':'login.html'}, name= "login"),
+    url(r'^login/$', auth_view.login, {'template_name':'perfil.html'}, name= "login"),
     url(r'^logout/$', logout_then_login, name="logout"),
-    url(r'^signup/$', Signup.as_view(), name="Signup"),
+    url(r'^signup/$', signup, name="signup"),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
