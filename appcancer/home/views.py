@@ -7,6 +7,35 @@ from django.views.generic import FormView
 from .models import Usuario
 from .forms import Usuario_Form
 
+from django.views.generic import ListView
+from .models import Hospital
+from .models import Fundaciones
+from .models import Doctores
+from .models import Noticia
+
+class directorios(ListView):
+    template_name = "directorio.html"
+    model = Hospital
+
+class reporteasociacion(ListView):
+    template_name = "Fundaciones.html"
+    model = Fundaciones
+
+
+class reportemedicos(ListView):
+    template_name = "Doctores.html"
+    model = Doctores
+
+class reporte_noticia(ListView):
+    template_name = "Noticias.html"
+    model = Noticia
+
+class reportehospital(ListView):
+    template_name = "hospitales.html"
+    model = Hospital
+
+
+
 # Create your views here.
 def index (request):
     return render(request, 'index.html')

@@ -9,7 +9,7 @@ class Usuario(models.Model):
     Correo = models.CharField(max_length=50)
     Direccion = models.CharField(max_length=100)
     def __unicode__(self):
-        return self.name.username
+        return self.Nombre
 
 
 class Doctores(models.Model):
@@ -23,7 +23,7 @@ class Doctores(models.Model):
     cedulatitulacion=models.CharField(max_length=100)
 
     def __unicode__(self):
-        return self.name.Doctor_user
+        return self.nombre_doc
 
 
 class Hospital(models.Model):
@@ -32,7 +32,7 @@ class Hospital(models.Model):
     codigopostal=models.IntegerField()
     Direccion = models.CharField(max_length=100)
     def __unicode__(self):
-        return self.name.Nombre
+        return self.nombre
 
 
 class Noticia(models.Model):
@@ -43,7 +43,7 @@ class Noticia(models.Model):
     fechapublicacion=models.DateField(blank=True,null=True)
 
     def __unicode__(self):
-        return self.name.titulo
+        return self.titulo
 
 
 class Fundaciones(models.Model):
@@ -53,7 +53,7 @@ class Fundaciones(models.Model):
     numerotelefono = models.IntegerField()
 
     def __unicode__(self):
-        return self.name.nombre
+        return self.nombre
 
 
 #no se si se deberia de agregar un modelo para cuando se hacen citas

@@ -23,21 +23,21 @@
 </head>
 
 <body>
-  <header>
+   <header>
     <nav div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <ul class="social-network">
-          <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          {% if user.is_authenticated %}
+          <li><a>Bienvenido {{user.username}}</a></li>
+          <li><a href = "/logout/"><i class="glyphicon glyphicon-log-out" ></i> Log out</a></li>
+          {%else%}
+          <li><a href="/accounts/facebook/login/?process=login " data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+          <li><a href="/accounts/google/login/?process=login" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          <li><a href="/login"><i class="glyphicon glyphicon-log-in" ></i> Login</a></li>
         </ul>
         <ul class="info">
-          <li>
-            <p><i class="fa fa-phone"></i>+1 769 525 422 5663</p>
-          </li>
-          <li><a href="#"><i class="fa fa-envelope"></i>hello@Dewi.com</a></li>
+          {% endif%}
+          <li><a href="#"><i class="fa fa-envelope"></i>Hola@Appcenter.com</a></li>
         </ul>
       </div>
     </nav>
@@ -47,28 +47,29 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <div class="navbar-brand">
-              <a href="index.html"><h1><span>D</span>ewi</h1></a>
+              <a href="http://localhost:8000/"><h1><span>Web </span>Cancer Center</h1></a>
             </div>
           </div>
 
           <div class="navbar-collapse collapse">
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="index.html">Home</a></li>
-                <li role="presentation"><a href="services.html">Services</a></li>
-                <li role="presentation"><a href="blog.html">Blog</a></li>
-                <li role="presentation"><a href="portfolio.html" class="active">Portfolio</a></li>
-                <li role="presentation"><a href="contact.html">Contact</a></li>
+              <li role="presentation"><a href="/"class="active">Inicio</a></li>
+                <li role="presentation"><a href="/directorio">Directorio</a></li>
+                <li role="presentation"><a href="/" >Noticias</a></li>
+                <li role="presentation"><a href="/">Contacto</a></li>
+                <li role="presentation"><a href="/nosotros">Nosotros</a></li>
+                 <li role="presentation"><a href="/login">Acceder</a></li>
+                  <li role="presentation"><a href="/signup">Registrate</a></li>
               </ul>
             </div>
           </div>
-          
         </div>
       </div>
     </nav>
@@ -84,150 +85,61 @@
       <div class="row">
         <nav id="filter" class="col-md-12 text-center">
           <ul>
-            <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
-            <li><a href="#" class="btn-theme btn-small" data-filter=".webdesign">Web Design</a></li>
-            <li><a href="#" class="btn-theme btn-small" data-filter=".photography">Photography</a></li>
-            <li><a href="#" class="btn-theme btn-small" data-filter=".print">Print</a></li>
-          </ul>
-        </nav>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="portfolio-items isotopeWrapper clearfix" id="3">
-              <article class="col-md-4 isotopeItem webdesign">
-                <div class="portfolio-item">
-                  <div class="wow rotateInUpLeft" data-animation-delay="4.8s">
-                    <img src="img/portfolio/1.jpg" alt="welcome" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 1</a></h5>
-                      <a href="img/portfolio/1.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="col-md-4 isotopeItem photography">
-                <div class="portfolio-item">
-                  <div class="wow bounceIn">
-                    <img src="img/portfolio/2.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 2</a></h5>
-                      <a href="img/portfolio/2.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+            <li><a href="#" class="current btn-theme btn-small" data-filter="*">Todo</a></li>
+            <li><a href="/doctores" class="btn-theme btn-small" data-filter=".webdesign">Medicos</a></li>
+            <li><a href="/fundacion" class="btn-theme btn-small" data-filter=".photography">Asociaciones</a></li>
+            <li><a href="/hospital" class="btn-theme btn-small" data-filter=".print">Hospitales</a></li>
+            <h3>Todos los directorios</h3>
+            <h5>Aqui podras encontrar toda la informacion de los medicos, de los hospitales o los que pertencen y tambien de las fundaciones o asociaciones a las que estamos integrados.
+             </h5>
+            <h5>
 
 
-              <article class="col-md-4 isotopeItem photography">
-                <div class="portfolio-item">
-                  <div class="wow rotateInDownRight">
-                    <img src="img/portfolio/3.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 3</a></h5>
-                      <a href="img/portfolio/3.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+            </h5>
+            <h5>
+            La informacion necesario para mantenerte en contacto con los telefonos que te proporcionamos para tener la mejor experiencia.
+            </h5>
 
-              <article class="col-md-4 isotopeItem print">
-                <div class="portfolio-item">
-                  <div class="wow rotateInUpLeft">
-                    <img src="img/portfolio/4.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 4</a></h5>
-                      <a href="img/portfolio/4.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
 
-              <article class="col-md-4 isotopeItem photography">
-                <div class="portfolio-item">
-                  <div class="wow bounceIn">
-                    <img src="img/portfolio/5.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 5</a></h5>
-                      <a href="img/portfolio/5.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+<table class = "table table-bordered">
 
-              <article class="col-md-4 isotopeItem webdesign">
-                <div class="portfolio-item">
-                  <div class="wow rotateInDownRight">
-                    <img src="img/portfolio/6.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 6</a></h5>
-                      <a href="img/portfolio/6.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+      <thead>
 
-              <article class="col-md-4 isotopeItem print">
-                <div class="portfolio-item">
-                  <div class="wow rotateInUpLeft">
-                    <img src="img/portfolio/7.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 7</a></h5>
-                      <a href="img/portfolio/7.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+        <tr>
+          <td>Nombre</td>
+          <td>Telefono</td>
+          <td>codigo postal</td>
+          <td>direccion</td>
+         
 
-              <article class="col-md-4 isotopeItem photography">
-                <div class="portfolio-item">
-                  <div class="wow bounceIn">
-                    <img src="img/portfolio/8.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 8</a></h5>
-                      <a href="img/portfolio/8.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
+        </tr>
 
-              <article class="col-md-4 isotopeItem print">
-                <div class="portfolio-item">
-                  <div class="wow rotateInDownRight">
-                    <img src="img/portfolio/9.jpg" alt="" />
-                  </div>
-                  <div class="portfolio-desc align-center">
-                    <div class="folio-info">
-                      <h5><a href="#">Project name 9</a></h5>
-                      <a href="img/portfolio/9.jpg" class="fancybox"><i class="fa fa-external-link fa-2x"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </thead>
+      
+      <tbody>
+
+        <tr>
+
+        {% for p in object_list %}
+
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.telefono }}</td>
+          <td>{{ p.codigopostal }}</td>
+          <td>{{ p.Direccion }}</td>
+
+         
+          
+        </tr>
+
+      {% endfor %}
+
+      </tbody>
+
+    </table>
+
 
   <div class="jumbotron">
-    <h1>We can <span>help build your</span> project!</h1>
+     
     <p>Voluptatem accusantium doloremque laudantium sprea totam rem aperiam</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Get it now</a></p>
   </div>

@@ -1,6 +1,4 @@
- {% load staticfiles %}
- <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,21 +23,21 @@
 </head>
 
 <body>
-  <header>
+   <header>
     <nav div class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
         <ul class="social-network">
-          <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
-          <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          {% if user.is_authenticated %}
+          <li><a>Bienvenido {{user.username}}</a></li>
+          <li><a href = "/logout/"><i class="glyphicon glyphicon-log-out" ></i> Log out</a></li>
+          {%else%}
+          <li><a href="/accounts/facebook/login/?process=login " data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+          <li><a href="/accounts/google/login/?process=login" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          <li><a href="/login"><i class="glyphicon glyphicon-log-in" ></i> Login</a></li>
         </ul>
         <ul class="info">
-          <li>
-            <p><i class="fa fa-phone"></i>+1 769 525 422 5663</p>
-          </li>
-          <li><a href="#"><i class="fa fa-envelope"></i>hello@Dewi.com</a></li>
+          {% endif%}
+          <li><a href="#"><i class="fa fa-envelope"></i>Hola@Appcenter.com</a></li>
         </ul>
       </div>
     </nav>
@@ -49,25 +47,26 @@
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <div class="navbar-brand">
-              <a href="index.html"><h1><span>Web </span>Cancer Center</h1></a>
+              <a href="http://localhost:8000/"><h1><span>Web </span>Cancer Center</h1></a>
             </div>
           </div>
 
-           <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse">
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
               <li role="presentation"><a href="/"class="active">Inicio</a></li>
-                <li role="presentation"><a href="/index">Directorio</a></li>
+                <li role="presentation"><a href="/directorio">Directorio</a></li>
                 <li role="presentation"><a href="/" >Noticias</a></li>
                 <li role="presentation"><a href="/">Contacto</a></li>
                 <li role="presentation"><a href="/nosotros">Nosotros</a></li>
                  <li role="presentation"><a href="/login">Acceder</a></li>
+                  <li role="presentation"><a href="/signup">Registrate</a></li>
               </ul>
             </div>
           </div>
@@ -77,89 +76,80 @@
   </header>
 
   <div class="jumbotron">
-    <h2>Nosotros</h2>
+    <h2>Directorio</h2>
   </div>
 
-  <div class="blog">
+  <!-- section works -->
+  <section id="section-works" class="section appear clearfix">
     <div class="container">
       <div class="row">
-        <div class=" ">
-          <div class="page-header">
-            <h3>Soporte excelente</h3>
-             
-            <img src="/static/img/slider/5.jpg" class="img-responsive" alt="" />
-            <p>Nosotros brindamos la ayuda a pacientes de cancer y los direccionamos institutos o asociaciones cerca de su hogar.
-            </p>
+        <nav id="filter" class="col-md-12 text-center">
+          <ul>
+            <li><a href="#" class="current btn-theme btn-small" data-filter="*">Todo</a></li>
+            <li><a href="/doctores" class="btn-theme btn-small" data-filter=".webdesign">Medicos</a></li>
+            <li><a href="/fundacion" class="btn-theme btn-small" data-filter=".photography">Asociaciones</a></li>
+            <li><a href="#" class="btn-theme btn-small" data-filter=".print">Hospitales</a></li>
+            <h3>Todos los hospitales</h3>
+            <h5>Aqui podras encontrar toda la informacion de los medicos, de los hospitales o los que pertencen y tambien de las fundaciones o asociaciones a las que estamos integrados.
+             </h5>
+            <h5>
 
-            <h3>Quienes somos?</h3>
 
-            <p>somos un grupo de programadores que buscan facilitar a las personas mas necesitadas en estas situaciones, y auxiliarlos para que tengan la mejor experiencia.
-            </p>
+            </h5>
+            <h5>
+            La informacion necesario para mantenerte en contacto con los telefonos que te proporcionamos para tener la mejor experiencia.
+            </h5>
 
-            <p>El equipo se conforma por alejandro torres, sarah quintero y fausto celaya que estudiante en el instituto tecnologico de tijuana.</p>
 
-          </div>
+<table class = "table table-bordered">
 
-        
+      <thead>
 
-        </div>
+        <tr>
+          <td>Nombre</td>
+          <td>Telefono</td>
+          <td>codigo postal</td>
+          <td>direccion</td>
+         
 
-       
-      </div>
-    </div>
+        </tr>
+
+      </thead>
+      
+      <tbody>
+
+        <tr>
+
+        {% for p in object_list %}
+
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.telefono }}</td>
+          <td>{{ p.codigopostal }}</td>
+          <td>{{ p.Direccion }}</td>
+
+         
+          
+        </tr>
+
+      {% endfor %}
+
+      </tbody>
+
+    </table>
+
+
+  <div class="jumbotron">
+     
+    <p>Voluptatem accusantium doloremque laudantium sprea totam rem aperiam</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Get it now</a></p>
   </div>
-
-
-  <div class="box">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <div class="img-thumbnail">
-              <img src="/static/img/team/7.jpg" alt="">
-              <div class="caption">
-                <h3>Fausto Celaya</h3>
-                <p>Programador web del instituto tecnologico de tijuana.</p>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <div class="img-thumbnail">
-              <img src="/static/img/team/6.jpg" alt="">
-              <div class="caption">
-                <h3>Sarah Quintero</h3>
-                <p>Programadora web del instituto tecnologico de tijuana. </p>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <div class="img-thumbnail">
-              <img src="/static/img/team/9.jpg" alt="">
-              <div class="caption">
-                <h3>Alejandro Torres</h3>
-                <p>Programador web del instituto tecnologico de tijuana. </p>
-              
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
 
   <footer>
     <div class="inner-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-4 f-about">
-            <a href="index.html"><h1><span>Web </span>App Center</h1></a>
+            <a href="index.html"><h1><span>D</span>ewi</h1></a>
             <p>We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind, the hidden and mysterious subconscious. Our subconscious mind contains such power.</p>
 
           </div>
