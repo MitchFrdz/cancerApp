@@ -1,56 +1,27 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-    {% block title %}
-    Login
-    {% endblock %}
-    {% block content %}
-
-    {% if user.is_authenticated %}
-      <p><h1>Bienvenido {{user.username}}</h1></p>
-      <a href = "/logout/">Cerrar sesión</a>
-
-      {% for account in user.socialaccount_set.all %}
-
-        {% ifequal account.provider "facebook" %}
-
-          <p><h4>{{ account.extra_data.first_name }}</h4></p>
-          <p><h4>{{ account.extra_data.last_name }}</h4></p>
-
-        {% else %}
-          {% ifequal account.provider "google" %}
-
-          <p><h4>{{ account.extra_data.given_name }}</h4></p>
-          <p><h4>{{ account.extra_data.family_name }}</h4></p>
-
-          {% endifequal %}
-          {% endifequal %}
-
-        <br>
-        <p><h4>Cuenta de &emsp;&emsp;: <strong style="text-transform:capitalize;">{{user.socialaccount_set.all.0.provider}}</strong></h4>
-        <p><img src="{{user.socialaccount_set.all.0.get_avatar_url}}" width="300px" height="300px"></p>
-    {% endfor%}
-
-    {% else %}
-
-    <form method = "POST">
-    {% csrf_token %}
-   
-      <div class = "form_group">
-        <label for = "UserName: ">Nombre Usuario</label>
-        <input type = "text" class = "form-control" id="username" name = "username" placeholder="Usuario">
+<div class="page-header">
+  <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+</div>
+<div class="profile">
+  <div class="row">
+    <div class="col-md-3 user-profile">
+      <img src="{{ page_user.profile.get_picture }}" class="picture">
+      <ul>
+        {% if page_user.profile.doctor %}
+        <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.doctor }}</li>
+        {% endif %}
+        {% if page_user.profile.fundacion %}
+        <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.fundacion }}</li>
+        {% endif %}
+        {% if page_user.profile.hospital %}
+        <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.hospital }}</li>
+        {% endif %}
+        {% if page_user.profile.url %}
+        <li><span class="glyphicon glyphicon-globe"></span> <a href="{{ page_user.profile.get_url }}" target="_blank">{{ page_user.profile.get_url }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+      <div class="load">
+        <img src="{% static 'img/loading.gif' %}">
       </div>
-
-      <div class = "form_group">
-        <label for = "Password">Contraseña</label>
-        <input type = "password" placeholder="Usuario">
-      </div>
-
-      <button type = "submit" class = "btn btn-primary btn-lg btn-block">Iniciar sesión</button>
-      <button type = "reset" class = "btn btn-warning btn-lg block">Cancelar</button>
-       
-    </form>
-    {% endif %}
-
-    <p><a href="/">Volver</a></p>
-
-{% endblock %}
+    </div>
+  </div>

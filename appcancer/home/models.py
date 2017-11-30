@@ -8,11 +8,11 @@ import urllib, hashlib
 # Create your models here.
 
 class Profile(models.Model):
+    is_doctor = models.NullBooleanField(default=False, blank=True)
+    is_fundacion=models.NullBooleanField(default=False, blank=True)
+    is_hospital=models.NullBooleanField(default=False, blank=True)
     user = models.OneToOneField(User)
-    location = models.CharField(max_length=50, null=True, blank=True)
     url = models.CharField(max_length=50, null=True, blank=True)
-    job_title = models.CharField(max_length=50, null=True, blank=True)
-
     class Meta:
         db_table = 'auth_profile'
 
@@ -67,6 +67,23 @@ class Profile(models.Model):
                 from_user=self.user,
                 to_user=answer.user,
                 answer=answer).delete()
+    def get_medical_profile(self):
+        doctor_profile = None
+        if hasattr(self, 'doctor'):
+            doctor_profile = self.doctor
+        return doctor_profile
+
+    def get_fundacion_profile(self):
+        fundacion_profile = None
+        if hasattr(self, 'fundacion'):
+            fundacion_profile = self.fundacion
+        return fundacion_profile
+
+    def get_hospital_profile(self):
+        hospital_profile = None
+        if hasattr(self, 'hospital'):
+            hospital_profile = self.hospital
+        return hospital_profile
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -79,20 +96,23 @@ post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
 
 class Hospital(models.Model):
-    nombre = models.CharField(max_length=100)
-    telefono = models.IntegerField(max_length=30)
-    codigopostal=models.IntegerField(max_length=5)
-    Direccion = models.CharField(max_length=100)
+    user_name = models.OneToOneField(User)
+    active = models.BooleanField(default=True)
+    nombre = models.CharField(max_length=100,null=True, blank=True)
+    telefono = models.IntegerField(null=True, blank=True)
+    codigopostal=models.IntegerField(null=True, blank=True)
+    Direccion = models.CharField(max_length=100,null=True, blank=True)
     def __unicode__(self):
         return self.nombre
 
 class Doctor(models.Model):
     Doctor_user=models.OneToOneField(User)
-    nombre_doc=models.CharField(max_length=100,default='nombre_doc')
-    apellidopat_doc=models.CharField(max_length=100,default='apellido_doc')
-    apellidomat_doc=models.CharField(max_length=100,default='apellido_doc')
-    titulos=models.TextField()
-    cedulatitulacion=models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
+    nombre_doc=models.CharField(max_length=100,default='nombre_doc',null=True, blank=True)
+    apellidopat_doc=models.CharField(max_length=100,default='apellido_doc',null=True, blank=True)
+    apellidomat_doc=models.CharField(max_length=100,default='apellido_doc',null=True, blank=True)
+    titulos=models.TextField(null=True, blank=True)
+    cedulatitulacion=models.CharField(max_length=100,null=True, blank=True)
     idFundacion_user=models.ForeignKey(Hospital)
     def __unicode__(self):
         return self.name.Doctor_user
@@ -108,11 +128,13 @@ class Noticia(models.Model):
         return self.titulo
 
 
-class Fundaciones(models.Model):
-    nombre = models.CharField(max_length=100)
-    direccion = models.CharField(max_length=150)
-    cuentabancaria=models.IntegerField()
-    numerotelefono = models.IntegerField()
+class Fundacion(models.Model):
+    user_name = models.OneToOneField(User)
+    active = models.BooleanField(default=True)
+    nombre = models.CharField(max_length=100,null=True, blank=True)
+    direccion = models.CharField(max_length=150,null=True, blank=True)
+    cuentabancaria=models.IntegerField(null=True, blank=True)
+    numerotelefono = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.nombre

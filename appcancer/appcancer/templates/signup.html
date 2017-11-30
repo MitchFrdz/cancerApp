@@ -20,6 +20,18 @@
             {% endfor %}
           </div>
         {% endfor %}
+        {% for field in form2.visible_fields %}
+        <div class="form-group{% if field.errors %} has-error{% endif %}">
+          <label for="{{ field.label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <span class="help-block">{{ field.help_text|safe }}</span>
+          {% endif %}
+          {% for error in field.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
+        </div>
+      {% endfor %}
         <button type="submit" class="btn btn-primary btn-lg">Crear cuenta</button>
       </form>
     </div>
